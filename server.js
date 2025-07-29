@@ -15,7 +15,7 @@ app.use(cors({
 
 const server = http.createServer(app);
 
-const { Server } = require("socket.io");
+
 const io = new Server(server, {
   cors: {
     origin: "https://sparkling-fenglisu-e1acbe.netlify.app",
