@@ -2,28 +2,35 @@ const express = require("express");
 const http = require("http");
 const path = require("path");
 const fs = require("fs");
+const cors = require("cors");
 const { Server } = require("socket.io");
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
 const PORT = process.env.PORT || 3000;
 
+const app = express();
 
-const publicPath = path.join(__dirname, "../public");
-app.use(express.static(publicPath));
+app.use(cors({
+  origin: "https://sparkling-fenglisu-e1acbe.netlify.app",
+  credentials: true // ← Add this
+}));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
+const server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server, {
+  cors: {
+    origin: "https://sparkling-fenglisu-e1acbe.netlify.app",
+    methods: ["GET", "POST"],
+    credentials: true // ← Add this too
+  }
 });
 
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running (Spello Game Server)");
+});
 
 
 const wordsPath = path.join(__dirname, "words.txt");
 const validWords = new Set(fs.readFileSync(wordsPath, "utf-8").split("\n").map(w => w.trim().toLowerCase()));
-
-
-
 
 const rooms = {}; // { roomCode: { players: [], admin: null, submittedWords: {}, bigWord: "", timer: 60 } }
 
@@ -54,7 +61,6 @@ io.on("connection", (socket) => {
     socket.emit("roomJoined", roomCode);
     io.to(roomCode).emit("updatePlayers", rooms[roomCode].players.map(p => p.username));
 
-    // Show "BECOME ADMIN" button if no admin exists
     socket.emit("adminStatus", !!rooms[roomCode].admin);
   });
 
@@ -83,7 +89,6 @@ io.on("connection", (socket) => {
         const score = room.submittedWords[uname]?.length || 0;
         result[uname] = score;
       }
-
       io.to(roomCode).emit("showLeaderboard", result);
     }, timer * 1000);
   });
@@ -126,38 +131,28 @@ io.on("connection", (socket) => {
     io.to(roomCode).emit("chatMessage", { username, message });
   });
 
-socket.on("disconnect", () => {
-  const room = rooms[roomCode];
-  if (!room) return;
+  socket.on("disconnect", () => {
+    const room = rooms[roomCode];
+    if (!room) return;
 
-  // Remove player
-  room.players = room.players.filter(p => p.id !== socket.id);
+    room.players = room.players.filter(p => p.id !== socket.id);
+    io.to(roomCode).emit("updatePlayers", room.players.map(p => p.username));
 
-  // Notify remaining players
-  io.to(roomCode).emit("updatePlayers", room.players.map(p => p.username));
+    if (room.admin === socket.id) {
+      room.admin = null;
+      io.to(roomCode).emit("adminRevoked");
+    }
 
-  // Clear admin if admin left
-  if (room.admin === socket.id) {
-    room.admin = null;
-    io.to(roomCode).emit("adminRevoked");
-  }
-
-  // 🧹 Delay deletion by 5 minutes if room is empty
-  if (room.players.length === 0) {
-    console.log(`⚠️ Room ${roomCode} is now empty. Waiting 5 minutes before deletion...`);
-    setTimeout(() => {
-      // Check again before deleting
-      if (rooms[roomCode] && rooms[roomCode].players.length === 0) {
-        delete rooms[roomCode];
-        console.log(`🗑️ Room ${roomCode} deleted after 5 minutes (still empty).`);
-      }
-    }, 5 * 60 * 1000); // 5 minutes = 300,000 ms
-  }
-});
-});
-server.listen(PORT, () => {
-
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+    if (room.players.length === 0) {
+      console.log(`⚠️ Room ${roomCode} is now empty. Waiting 5 minutes before deletion...`);
+      setTimeout(() => {
+        if (rooms[roomCode] && rooms[roomCode].players.length === 0) {
+          delete rooms[roomCode];
+          console.log(`🗑️ Room ${roomCode} deleted after 5 minutes (still empty).`);
+        }
+      }, 5 * 60 * 1000);
+    }
+  });
 });
 
 function canFormFromBigWord(word, bigWord) {
@@ -169,3 +164,7 @@ function canFormFromBigWord(word, bigWord) {
   }
   return true;
 }
+
+server.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
