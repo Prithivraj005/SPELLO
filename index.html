@@ -1,0 +1,23 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Word Game Lobby</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Multiplayer Word Game</h1>
+    <input id="username-input" placeholder="Enter Username" />
+    <button id="create-btn">Create Room</button>
+    <input id="room-code-input" placeholder="Enter Room Code" />
+    <button id="join-btn">Join Room</button>
+    <p id="room-display"></p>
+  </div>
+
+  <script src="https://spello.onrender.com/socket.io/socket.io.js"></script> 
+
+  <script src="script.js"></script>
+</body>
+</html>

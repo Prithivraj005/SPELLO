@@ -1,0 +1,77 @@
+<!-- public/game.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Word Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>SPELLO</h1>
+  <p id="room-code-display"></p>
+  <button id="copy-room-btn">Copy Room Code</button>
+  <span id="copy-confirm" style="color: lightgreen; display: none;">✅ Copied!</span>
+
+  <div id="top-bar">
+    <button id="become-admin-btn">BECOME ADMIN</button>
+
+
+<div id="game-started-message" style="display: none; color: #00ff00; font-size: 2em; font-weight: bold; text-align: center; margin-top: 10px;">
+  GAME STARTED
+</div>
+
+
+    <div id="admin-controls" style="display: none;">
+      <label>Big Word:</label>
+      <input type="text" id="big-word-input" />
+      <br>
+      <label>Timer:</label>
+      <select id="timer-select">
+        <option value="20">20s</option>
+        <option value="40">40s</option>
+        <option value="60">60s</option>
+      </select>
+      <br>
+      <button id="start-round-btn">Start Round</button>
+    </div>
+
+    <div id="big-word-display" style="display: none;">
+      <h3>Big Word: <span id="big-word-text"></span></h3>
+      <p>Timer: <span id="timer-countdown"></span></p>
+    </div>
+
+  
+    <div id="wordSubmitSection" style="display: none; margin-top: 20px;">
+      <input type="text" id="playerWordInput" placeholder="Type a word using the big word" />
+      <ul id="submitted-words"></ul>
+    </div>
+
+
+    <div>
+      <h3>Players Joined:</h3>
+      <ul id="player-list"></ul>
+    </div>
+
+    <div id="chat-container">
+  <h3>Chat</h3>
+  <div id="chat-box" style="border: 1px solid #ccc; height: 200px; overflow-y: scroll; padding: 5px;"></div>
+  <input type="text" id="chat-input" placeholder="Type a message..." />
+  <div id="emoji-picker">
+    <button class="emoji-button">😊</button>
+    <button class="emoji-button">😂</button>
+    <button class="emoji-button">🔥</button>
+    <button class="emoji-button">🎉</button>
+    <button class="emoji-button">👍</button>
+  </div>
+</div>
+
+
+
+    <div id="leaderboard" style="margin-top: 30px;"></div>
+    <button id="play-again-btn" style="display: none;">Play Again</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

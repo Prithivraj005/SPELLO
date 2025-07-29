@@ -1,0 +1,140 @@
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #001f3f; /* Navy Blue */
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+input[type="text"], button {
+  font-family: 'Poppins', sans-serif;
+  padding: 10px;
+  font-size: 1em;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  width: 300px;
+}
+
+button {
+  background-color: white;
+  color: #001f3f;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #cce0ff; /* Lighter blue hover */
+}
+
+#player-list, #chatbox, #game-area, #admin-controls {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #002b5c;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#chat-messages {
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #001f3f;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.emoji-button {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.emoji-button:hover {
+  transform: scale(1.2);
+}
+
+.word-input-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#wordList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#wordList li {
+  background-color: #003366;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+.winner-text {
+  color: gold;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  input[type="text"], button {
+    width: 100%;
+    font-size: 1em;
+    margin: 8px 0;
+  }
+
+  #player-list, #chatbox, #game-area, #admin-controls {
+    width: 100%;
+    padding: 15px;
+  }
+
+  #chat-box {
+    height: 150px;
+  }
+
+  #wordSubmitSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .word-input-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
