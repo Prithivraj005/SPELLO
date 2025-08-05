@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-  origin: "https://sparkling-fenglisu-e1acbe.netlify.app",
+  origin: "https://prithiv-spello.netlify.app",
   credentials: true // ← Add this
 }));
 
@@ -19,7 +19,7 @@ app.use(express.static("public"));
 
 const io = new Server(server, {
   cors: {
-    origin: "https://sparkling-fenglisu-e1acbe.netlify.app",
+    origin: "https://prithiv-spello.netlify.app",
     methods: ["GET", "POST"],
     credentials: true // ← Add this too
   }
