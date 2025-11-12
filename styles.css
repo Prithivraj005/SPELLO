@@ -138,55 +138,53 @@ button:hover {
 }
 
 
+
+
+
+
+
+
+
+
 /* =========================
-   STRONG MOBILE OVERRIDE
+   FINAL MOBILE FIX (WORKING)
    ========================= */
 
-/* Apply only for screens ≤ 768px */
-
-
-/* Force mobile override to reload */
-@media (max-width: 768px) {
-  html, body, .container, input, button, p, h1 {
-    all: unset;
-    display: revert;
-  }
-}
-
-
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   body {
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
     background-color: #001f3f;
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: auto;
+    min-height: 100vh;
   }
 
   .container {
     width: 90%;
-    max-width: 400px;
+    max-width: 380px;
+    margin: 20px auto 0 auto;
     text-align: center;
-    margin-top: 40px;
   }
 
   h1 {
     font-size: 1.6rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
   }
 
-  input,
+  input[type="text"],
   button {
     width: 100%;
-    margin: 6px 0;
-    padding: 10px;
     font-size: 1rem;
-    border-radius: 6px;
+    margin: 8px 0;
+    padding: 10px;
     border: none;
+    border-radius: 6px;
     box-sizing: border-box;
   }
 
@@ -202,5 +200,25 @@ button:hover {
     margin-top: 12px;
     color: #fff;
   }
-}
 
+  /* Make game sections stack nicely */
+  #player-list,
+  #chatbox,
+  #game-area,
+  #admin-controls {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    box-sizing: border-box;
+  }
+
+  .word-input-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #chat-messages {
+    max-height: 150px;
+  }
+}
