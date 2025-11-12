@@ -1,78 +1,68 @@
+/* styles.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-* {
-  box-sizing: border-box;
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #001f3f; /* Navy Blue */
+  color: white;
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-  background-color: #001f3f; /* Dark navy */
-  color: #fff;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  overflow: hidden; /* Prevent scroll / zoom issues */
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
-.container, #top-bar {
-  background-color: #002b5c; /* Blue card */
-  padding: 20px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+header {
   text-align: center;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: 600;
 }
 
-/* Headings */
-h1, h3 {
-  color: #fff;
-  margin-bottom: 15px;
-}
-
-/* Inputs & Buttons */
-input[type="text"], select, button {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+input[type="text"], button {
   font-family: 'Poppins', sans-serif;
+  padding: 10px;
+  font-size: 1em;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  width: 300px;
 }
 
 button {
-  background-color: #fff;
+  background-color: white;
   color: #001f3f;
-  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #cce0ff;
+  background-color: #cce0ff; /* Lighter blue hover */
 }
 
-/* Chat + Player List + Game Sections */
-#chat-container, #player-list, #admin-controls, #big-word-display, #leaderboard {
-  background-color: #003366;
-  padding: 15px;
+#player-list, #chatbox, #game-area, #admin-controls {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #002b5c;
   border-radius: 10px;
-  margin-top: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-#chat-box {
-  height: 160px;
+#chat-messages {
+  max-height: 150px;
   overflow-y: auto;
   background-color: #001f3f;
-  border-radius: 8px;
-  padding: 8px;
+  padding: 10px;
+  border-radius: 5px;
   margin-bottom: 10px;
-  text-align: left;
 }
 
 .emoji-button {
@@ -87,27 +77,119 @@ button:hover {
   transform: scale(1.2);
 }
 
-/* Prevent pinch zooming / double tap zoom */
+.word-input-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#wordList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#wordList li {
+  background-color: #003366;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+.winner-text {
+  color: gold;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  input[type="text"], button {
+    width: 100%;
+    font-size: 1em;
+    margin: 8px 0;
+  }
+
+  #player-list, #chatbox, #game-area, #admin-controls {
+    width: 100%;
+    padding: 15px;
+  }
+
+  #chat-box {
+    height: 150px;
+  }
+
+  #wordSubmitSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .word-input-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
+/* ======== FINAL MOBILE FIX (No blue gaps, no zoom-out) ======== */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #001f3f;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Prevent zoom-out or scaling issues */
+  input, select, textarea {
+    font-size: 16px; /* prevents mobile auto-zoom */
+  }
+
+  /* Make main card fill screen width neatly */
+  #top-bar, .container, #player-list, #chatbox, #game-area, #admin-controls, #chat-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  /* Center heading spacing */
+  h1, h3 {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  /* Make sure viewport fits content */
+  #game-started-message {
+    font-size: 1.4em;
+  }
+}
+
+/* Prevent pinch-zoom globally */
 @viewport {
   width: device-width;
   zoom: 1.0;
 }
+
 meta[name="viewport"] {
   content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 }
 
-/* Mobile fine-tuning */
-@media (max-width: 480px) {
-  .container, #top-bar {
-    width: 95%;
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 1.4rem;
-  }
-
-  input, button {
-    font-size: 0.95rem;
-  }
-}
