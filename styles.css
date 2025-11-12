@@ -138,89 +138,57 @@ button:hover {
 }
 
 
-/* ====================================
-   STRONG MOBILE RESPONSIVE FIX (Spello)
-   ==================================== */
+/* =========================
+   STRONG MOBILE OVERRIDE
+   ========================= */
 
+/* Apply only for screens ≤ 768px */
 @media (max-width: 768px) {
-
   body {
+    background-color: #001f3f;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px 10px;
     height: auto;
-    overflow-y: auto;
   }
 
-  /* Main container - force vertical stacking */
   .container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 12px !important;
-    width: 100% !important;
-    max-width: 95% !important;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 40px;
   }
 
-  /* All text inputs */
-  input[type="text"], input[type="number"] {
-    width: 90% !important;
-    font-size: 1rem !important;
-    padding: 10px !important;
-    text-align: center !important;
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
   }
 
-  /* Buttons */
+  input,
   button {
-    width: 90% !important;
-    font-size: 1rem !important;
-    padding: 10px !important;
-    margin-top: 8px !important;
+    width: 100%;
+    margin: 6px 0;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    box-sizing: border-box;
   }
 
-  /* Game Page Elements */
-  #room-code-display,
-  #copy-room-btn,
-  #players,
-  #chat,
-  #word-display,
-  #timer,
-  #scoreboard {
-    width: 90% !important;
-    margin: 8px auto !important;
-    text-align: center !important;
+  #create-btn,
+  #join-btn {
+    background-color: #f0f0f0;
+    color: #001f3f;
+    font-weight: bold;
   }
 
-  #players {
-    padding: 10px !important;
-  }
-
-  #chat {
-    height: 160px !important;
-    font-size: 0.9rem !important;
-  }
-
-  #chat input[type="text"] {
-    width: 100% !important;
-  }
-
-  .emoji-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-
-  /* Text tweaks */
-  h1, h2, h3 {
-    font-size: 1.5rem !important;
-    text-align: center !important;
-  }
-
-  p, span, label {
-    font-size: 0.9rem !important;
+  #room-display {
+    font-size: 1rem;
+    margin-top: 12px;
+    color: #fff;
   }
 }
