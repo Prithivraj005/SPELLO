@@ -1,103 +1,113 @@
-/* Fullscreen layout fix for Spello */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-/* Reset defaults */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* Make the whole viewport usable */
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #02254d;
   font-family: 'Poppins', sans-serif;
+  background-color: #001f3f; /* Dark navy */
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* Prevent scroll / zoom issues */
 }
 
-/* Shared container styles */
 .container, #top-bar {
-  width: 100%;
-  max-width: 500px;
-  background-color: #03366b;
-  border-radius: 10px;
-  padding: 30px;
+  background-color: #002b5c; /* Blue card */
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
   text-align: center;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-/* Title */
-h1 {
-  font-size: 1.8rem;
+/* Headings */
+h1, h3 {
+  color: #fff;
   margin-bottom: 15px;
 }
 
-/* Inputs & buttons */
-input, select, button {
+/* Inputs & Buttons */
+input[type="text"], select, button {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  border-radius: 5px;
   border: none;
-  outline: none;
+  border-radius: 8px;
   font-size: 1rem;
-}
-
-input {
-  background-color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
 }
 
 button {
-  background-color: #ff9800;
-  color: #fff;
+  background-color: #fff;
+  color: #001f3f;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #e68900;
+  background-color: #cce0ff;
 }
 
-/* Player list, chat, and other sections */
-#player-list, #chat-box, #submitted-words {
-  list-style: none;
-  background-color: #022f63;
-  border-radius: 6px;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-#chat-container {
-  margin-top: 20px;
+/* Chat + Player List + Game Sections */
+#chat-container, #player-list, #admin-controls, #big-word-display, #leaderboard {
+  background-color: #003366;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
 }
 
 #chat-box {
-  height: 180px;
+  height: 160px;
   overflow-y: auto;
+  background-color: #001f3f;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-/* Emoji buttons */
-#emoji-picker button {
-  width: auto;
-  margin: 3px;
-  font-size: 1.4rem;
-  background: transparent;
+.emoji-button {
+  font-size: 20px;
+  background: none;
   border: none;
   cursor: pointer;
+  margin: 5px;
 }
 
-/* Fullscreen structure */
-body > div, #top-bar {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-y: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+.emoji-button:hover {
+  transform: scale(1.2);
+}
+
+/* Prevent pinch zooming / double tap zoom */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+meta[name="viewport"] {
+  content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 480px) {
+  .container, #top-bar {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  input, button {
+    font-size: 0.95rem;
+  }
 }
