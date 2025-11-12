@@ -78,14 +78,19 @@ setTimeout(() => {
 const wordInput = document.getElementById("playerWordInput");
 wordInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    event.preventDefault();  
+    event.stopPropagation(); 
+
     const word = wordInput.value.trim().toLowerCase();
     if (word) {
       socket.emit("submitWord", word);
       wordInput.value = "";
-      wordInput.focus();
+      // keep focus on same input
+      setTimeout(() => wordInput.focus(), 100);
     }
   }
 });
+
 
 socket.on("updateMyWords", (wordList) => {
   const ul = document.getElementById("submitted-words");
@@ -182,3 +187,4 @@ copyBtn.addEventListener("click", () => {
     setTimeout(() => copyConfirm.style.display = "none", 1500);
   });
 });
+
