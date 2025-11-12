@@ -138,6 +138,10 @@ button:hover {
 }
 
 
+/* ====================================
+   STRONG MOBILE RESPONSIVE FIX (Spello)
+   ==================================== */
+
 @media (max-width: 768px) {
 
   body {
@@ -145,41 +149,39 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 10px;
+    padding: 20px 10px;
     height: auto;
     overflow-y: auto;
   }
 
-  h1 {
-    font-size: 1.6rem;
-    margin-top: 20px;
-    text-align: center;
-  }
-
+  /* Main container - force vertical stacking */
   .container {
-    width: 100%;
-    max-width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 95% !important;
   }
 
-  input[type="text"],
-  input[type="number"] {
-    width: 90%;
-    font-size: 1rem;
-    padding: 10px;
+  /* All text inputs */
+  input[type="text"], input[type="number"] {
+    width: 90% !important;
+    font-size: 1rem !important;
+    padding: 10px !important;
+    text-align: center !important;
   }
 
+  /* Buttons */
   button {
-    width: 90%;
-    font-size: 1rem;
-    padding: 10px;
+    width: 90% !important;
+    font-size: 1rem !important;
+    padding: 10px !important;
+    margin-top: 8px !important;
   }
 
-  /* Game Page Layout */
-  #top-bar,
+  /* Game Page Elements */
   #room-code-display,
   #copy-room-btn,
   #players,
@@ -188,45 +190,37 @@ button:hover {
   #timer,
   #scoreboard {
     width: 90% !important;
-    margin: 5px auto;
-    text-align: center;
+    margin: 8px auto !important;
+    text-align: center !important;
   }
 
   #players {
-    min-height: auto;
-    padding: 10px;
+    padding: 10px !important;
   }
 
   #chat {
-    height: 150px;
-    font-size: 0.9rem;
+    height: 160px !important;
+    font-size: 0.9rem !important;
   }
 
   #chat input[type="text"] {
-    width: 100%;
+    width: 100% !important;
   }
 
   .emoji-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
   }
 
-  /* Buttons */
-  #create-room,
-  #join-room,
-  #become-admin {
-    display: block;
-    width: 90%;
-    margin: 6px auto;
+  /* Text tweaks */
+  h1, h2, h3 {
+    font-size: 1.5rem !important;
+    text-align: center !important;
   }
 
-  /* Adjust overall text */
   p, span, label {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
 }
-
-
-
