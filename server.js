@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-  origin: "https://prithiv-spello.netlify.app",
+  origin: "https://spell-go.netlify.app",
   credentials: true // ← Add this
 }));
 
@@ -19,7 +19,7 @@ app.use(express.static("public"));
 
 const io = new Server(server, {
   cors: {
-    origin: "https://prithiv-spello.netlify.app",
+    origin: "https://spell-go.netlify.app",
     methods: ["GET", "POST"],
     credentials: true // ← Add this too
   }
@@ -168,4 +168,5 @@ function canFormFromBigWord(word, bigWord) {
 
 server.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
+
 });
