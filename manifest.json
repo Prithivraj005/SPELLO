@@ -1,7 +1,7 @@
 {
   "name": "Spello",
   "short_name": "Spello",
-  "start_url": ".",
+  "start_url": "https://spell-go.netlify.app",
   "display": "standalone",
   "background_color": "#001f3f",
   "theme_color": "#001f3f",
